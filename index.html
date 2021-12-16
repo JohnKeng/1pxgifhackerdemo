@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:;base64,iVBORwOKGO=" />
+    <title>HTML Template example</title>
+    <style>
+        :root{
+            --maincolor: #ffeb3b;
+        }
+        body{
+            background-color: var(--maincolor);
+        }
+    </style>
+</head>
+<body>
+    <button is="button-hello" log="c1">hello</button>
+    <script>
+        class ButtonHelloElement extends HTMLButtonElement{
+            constructor(){
+                super()
+                this.addEventListener('click',(e)=>{
+
+                    log += '&click=' + e.srcElement.getAttribute('log')    
+                    const image = new Image()
+                    image.crossOrigin = "Anonymous"
+                    image.src = 'http://127.0.0.1:8000/log.gif?' + log 
+                    console.log(image.src)
+                    
+                })
+            }
+        }
+        customElements.define("button-hello", ButtonHelloElement,{
+            extends: "button"
+        });
+
+        document.cookie = "name=john"
+        let log = document.cookie
+        
+
+    </script>
+</body>
+</html>
